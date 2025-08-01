@@ -1,0 +1,110 @@
+:root {
+  /* Primary Colors - Emerald/Teal Theme */
+  --primary: #10b981;          /* Emerald 500 */
+  --primary-dark: #047857;     /* Emerald 700 */
+  --primary-light: #34d399;    /* Emerald 400 */
+  
+  /* Secondary Colors */
+  --secondary: #14b8a6;        /* Teal 500 */
+  --secondary-dark: #0f766e;   /* Teal 700 */
+  --secondary-light: #2dd4bf;  /* Teal 400 */
+  
+  /* Background Colors */
+  --bg-primary: #020617;       /* Slate 950 */
+  --bg-secondary: #0f172a;     /* Slate 900 */
+  --bg-tertiary: #1e293b;      /* Slate 800 */
+  --bg-card: rgba(30, 41, 59, 0.8); /* Slate 800 with opacity */
+  
+  /* Text Colors */
+  --text-primary: #f8fafc;     /* Slate 50 */
+  --text-secondary: #cbd5e1;   /* Slate 300 */
+  --text-muted: #64748b;       /* Slate 500 */
+  
+  /* Accent Colors */
+  --accent-orange: #f97316;    /* Orange 500 - for Crunchyroll */
+  --accent-green: #22c55e;     /* Green 500 - for Spotify */
+  --accent-blue: #3b82f6;      /* Blue 500 - for general */
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--primary), var(--secondary));
+  --gradient-bg: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, #111827 100%);
+}
+
+/* Global overrides */
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.theme-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(99, 119, 151, 0.1);
+}
+
+.theme-text-gradient {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Container for each status icon */
+.status-icon {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Online: solid green circle */
+.status-online {
+  background-color: #23A55A;
+}
+
+/* Idle: yellow crescent matching Discord’s shape */
+.status-idle {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #F0B232;
+  display: inline-block;
+  overflow: hidden;
+}
+
+/* Crescent “bite” using a rotated mask for precise lower-left curve */
+.status-idle::before {
+  content: "";
+  position: absolute;
+  bottom: 1px;        /* align mask bottom just outside */
+  left: -7px;          /* shift mask left for deeper cut */
+  width: 14px;         /* wide enough to cover full circle */
+  height: 14px;        /* height covers entire circle */
+  background-color: #1F2937; /* Discord background */
+  border-radius: 50%;
+  transform: rotate(25deg);   /* tilt mask to focus bite on lower-left */
+}
+
+/* Do Not Disturb: red circle with horizontal bar */
+.status-dnd {
+  background-color: #F23F43;
+}
+.status-dnd::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 1.9px;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 2px;
+  background-color: #2F3136; /* match Discord background */
+  border-radius: 1px;
+}
+
+/* Offline/Invisible: gray ring */
+.status-offline {
+  background-color: transparent;
+  border: 2px solid #80848E;
+}
