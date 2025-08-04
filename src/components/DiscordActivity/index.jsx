@@ -5,8 +5,9 @@ import ActivityCard from "./ActivityCard";
 import SpotifyCard from "./SpotifyCard";
 import CrunchyrollCard from "./CrunchyrollCard";
 import { getMainActivity } from "../../../utils/activityUtils";
+import NoActivity from './NoActivity';
 
-const DISCORD_ID = "1084416366121058364";
+const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
 
 export default function DiscordActivity() {
   const { data, loading, error } = useLanyard(DISCORD_ID);
@@ -57,14 +58,12 @@ export default function DiscordActivity() {
   const spotify = data.spotify;
   const crunchyroll = data.activities?.find(a => a.name?.includes("Crunchyroll"));
 
-  // Priority: Spotify > Game > Crunchyroll > Status only
   const showSpotify = spotify && data.listening_to_spotify;
   const showMainActivity = !showSpotify && mainActivity;
   const showCrunchyroll = !showSpotify && !showMainActivity && crunchyroll;
 
   return (
     <div className="w-full max-w-2xl space-y-8">
-      {/* Main activity display with integrated status indicators */}
       {showSpotify && (
         <SpotifyCard 
           spotify={spotify} 
@@ -91,15 +90,19 @@ export default function DiscordActivity() {
           user={data.discord_user} 
         />
       )}
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-20px);
+          }
+        }
+      `}</style>
       
-      {!showSpotify && !showMainActivity && !showCrunchyroll && (
-        <div className="relative text-center py-16 anime-card rounded-3xl">
-          <StatusDisplay status={status} user={data.discord_user} position="top-right" />
-          <div className="text-6xl mb-6">🎵</div>
-          <p className="text-2xl text-gray-300 mb-2">No current activity</p>
-          <p className="text-lg text-gray-500">Check back later to see what I'm up to!</p>
-        </div>
-      )}
+      {!showSpotify && !showMainActivity && !showCrunchyroll && (<NoActivity/>)}
     </div>
   );
 }

@@ -1,36 +1,29 @@
 :root {
-  /* Primary Colors - Emerald/Teal Theme */
-  --primary: #10b981;          /* Emerald 500 */
-  --primary-dark: #047857;     /* Emerald 700 */
-  --primary-light: #34d399;    /* Emerald 400 */
-  
-  /* Secondary Colors */
-  --secondary: #14b8a6;        /* Teal 500 */
-  --secondary-dark: #0f766e;   /* Teal 700 */
-  --secondary-light: #2dd4bf;  /* Teal 400 */
-  
-  /* Background Colors */
-  --bg-primary: #020617;       /* Slate 950 */
-  --bg-secondary: #0f172a;     /* Slate 900 */
-  --bg-tertiary: #1e293b;      /* Slate 800 */
-  --bg-card: rgba(30, 41, 59, 0.8); /* Slate 800 with opacity */
-  
-  /* Text Colors */
-  --text-primary: #f8fafc;     /* Slate 50 */
-  --text-secondary: #cbd5e1;   /* Slate 300 */
-  --text-muted: #64748b;       /* Slate 500 */
-  
-  /* Accent Colors */
-  --accent-orange: #f97316;    /* Orange 500 - for Crunchyroll */
-  --accent-green: #22c55e;     /* Green 500 - for Spotify */
-  --accent-blue: #3b82f6;      /* Blue 500 - for general */
-  
-  /* Gradients */
+  --primary: #10b981;
+  --primary-dark: #047857;
+  --primary-light: #34d399;
+
+  --secondary: #14b8a6;
+  --secondary-dark: #0f766e;
+  --secondary-light: #2dd4bf;
+
+  --bg-primary: #020617;
+  --bg-secondary: #0f172a;
+  --bg-tertiary: #1e293b;
+  --bg-card: rgba(30, 41, 59, 0.8);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+
+  --accent-orange: #f97316;
+  --accent-green: #22c55e;
+  --accent-blue: #3b82f6;
+
   --gradient-primary: linear-gradient(135deg, var(--primary), var(--secondary));
   --gradient-bg: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, #111827 100%);
 }
 
-/* Global overrides */
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
@@ -49,7 +42,6 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-/* Container for each status icon */
 .status-icon {
   position: relative;
   width: 12px;
@@ -58,12 +50,10 @@ body {
   display: inline-block;
 }
 
-/* Online: solid green circle */
 .status-online {
   background-color: #23A55A;
 }
 
-/* Idle: yellow crescent matching Discord’s shape */
 .status-idle {
   position: relative;
   width: 12px;
@@ -74,20 +64,18 @@ body {
   overflow: hidden;
 }
 
-/* Crescent “bite” using a rotated mask for precise lower-left curve */
 .status-idle::before {
   content: "";
   position: absolute;
-  bottom: 1px;        /* align mask bottom just outside */
-  left: -7px;          /* shift mask left for deeper cut */
-  width: 14px;         /* wide enough to cover full circle */
-  height: 14px;        /* height covers entire circle */
-  background-color: #1F2937; /* Discord background */
+  bottom: 1px;
+  left: -7px;
+  width: 14px;
+  height: 14px;
+  background-color: #1F2937;
   border-radius: 50%;
-  transform: rotate(25deg);   /* tilt mask to focus bite on lower-left */
+  transform: rotate(25deg);
 }
 
-/* Do Not Disturb: red circle with horizontal bar */
 .status-dnd {
   background-color: #F23F43;
 }
@@ -99,12 +87,18 @@ body {
   transform: translateY(-50%);
   width: 8px;
   height: 2px;
-  background-color: #2F3136; /* match Discord background */
+  background-color: #2F3136;
   border-radius: 1px;
 }
 
-/* Offline/Invisible: gray ring */
 .status-offline {
   background-color: transparent;
   border: 2px solid #80848E;
+}
+
+.Toastify__toast--success {
+  background-color: #14b8a6 !important;
+}
+.Toastify__progress-bar--success {
+  background: linear-gradient(to right, #2dd4bf, #14b8a6) !important;
 }

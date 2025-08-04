@@ -1,32 +1,39 @@
-// utils/activityUtils.js
+import { fetchManualImages } from './manualImages';
 
 export function getMainActivity(activities) {
   if (!activities) return null;
-  // Only return games/apps, NOT Crunchyroll (we handle that separately)
   return (
-    activities.find(a => a.type === 0 && !a.name?.includes("Crunchyroll")) || // Game/playing but not Crunchyroll
-    activities.find(a => a.type === 1 && !a.name?.includes("Crunchyroll")) || // Streaming but not Crunchyroll
+    activities.find(a => a.type === 0 && !a.name?.includes("Crunchyroll")) ||
+    activities.find(a => a.type === 1 && !a.name?.includes("Crunchyroll")) ||
     null
   );
 }
 
-export function getActivityImage(activity) {
-  if (!activity) return "";
+let manualImagesCache = null;
+
+export async function getActivityImage(activity) {
+  if (!activity) return '';
+
+  if (!manualImagesCache) {
+    manualImagesCache = await fetchManualImages();
+  }
+
+  if (manualImagesCache[activity.name]) {
+    return manualImagesCache[activity.name];
+  }
   
-  const manualImages = {
-    "VALORANT": "https://images.igdb.com/igdb/image/upload/t_cover_big/co8ok7.jpg",
-    // ...add more as desired
-  };
-  
-  if (manualImages[activity.name]) return manualImages[activity.name];
-  
-  // Standard Discord large image logic
+  const lowerName = activity.name.toLowerCase();
+  const foundKey = Object.keys(manualImagesCache).find(k => k.toLowerCase() === lowerName);
+  if (foundKey) {
+    return manualImagesCache[foundKey];
+  }
+
   if (activity.assets?.large_image) {
-    if (activity.assets.large_image.startsWith("mp:")) {
-      return `https://media.discordapp.net/${activity.assets.large_image.replace("mp:", "")}`;
+    if (activity.assets.large_image.startsWith('mp:')) {
+      return `https://media.discordapp.net/${activity.assets.large_image.replace('mp:', '')}`;
     }
     return `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
   }
-  
-  return "";
+
+  return '/images/controller-placeholder.png';
 }

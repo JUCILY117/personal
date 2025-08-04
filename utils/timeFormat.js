@@ -1,5 +1,3 @@
-// utils/timeFormat.js
-
 export function formatTime(ms) {
   const s = Math.floor(ms / 1000);
   const min = Math.floor(s / 60);

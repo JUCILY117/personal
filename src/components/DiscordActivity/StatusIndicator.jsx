@@ -2,7 +2,6 @@ export default function StatusIndicator({ status = "offline", floating = false }
   const statusClass = `status-icon status-${status}`;
 
   if (floating) {
-    // (unchanged floating badge)
     return (
       <div className="absolute -top-2 -right-2 z-10">
         <div className={`

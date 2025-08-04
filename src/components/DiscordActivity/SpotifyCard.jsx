@@ -11,8 +11,6 @@ export default function SpotifyCard({ spotify, currentTime, status, user }) {
   ));
   const totalMs = spotify.timestamps.end - spotify.timestamps.start;
   const progressPercent = (progressMs / totalMs) * 100;
-
-  // Format artists with icon separator
   const formatArtists = (artistString) => {
     if (!artistString) return '';
     const artists = artistString.split(';').map(artist => artist.trim());
@@ -33,14 +31,10 @@ export default function SpotifyCard({ spotify, currentTime, status, user }) {
   return (
     <div className="w-full max-w-xl ml-8">
       <div className="relative bg-gradient-to-r from-gray-900/60 to-gray-800/40 rounded-3xl p-6 backdrop-blur-sm border border-gray-700/30">
-        {/* Status Indicator - Top Right */}
         <StatusDisplay status={status} user={user} position="top-right" />
-        
         <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent rounded-3xl"></div>
         
         <div className="relative">
-          {/* Header inside card - Left aligned */}
-
           <div className="mb-4">
             <p className="text-sm text-gray-400 text-left">
               Currently listening to{" "}
@@ -55,7 +49,6 @@ export default function SpotifyCard({ spotify, currentTime, status, user }) {
             </p>
           </div>
           <div className="flex items-center gap-6">
-            {/* Album Art */}
             <div className="flex-shrink-0">
               <div className="relative group">
                 <a
@@ -75,16 +68,13 @@ export default function SpotifyCard({ spotify, currentTime, status, user }) {
               </div>
             </div>
 
-            {/* Song Info */}
             <div className="flex-1 min-w-0">
-              {/* Song Title with tooltip for long names */}
               <h3 className="text-2xl font-bold text-white mb-1 truncate" title={spotify.song}>
                 {spotify.song}
               </h3>
               
               <div className="space-y-1 mb-4">
-                {/* Artists with icon separator */}
-                <div className="text-lg text-green-400 font-medium truncate" title={spotify.artist}>
+                <div className="text-sm text-green-400 font-medium truncate" title={spotify.artist}>
                   {formatArtists(spotify.artist)}
                 </div>
                 <p className="text-sm text-gray-400 truncate" title={spotify.album}>
@@ -92,7 +82,6 @@ export default function SpotifyCard({ spotify, currentTime, status, user }) {
                 </p>
               </div>
 
-              {/* Progress Section */}
               <div className="space-y-2">
                 <div className="relative">
                   <div className="w-full bg-gray-700/50 rounded-full h-2 overflow-hidden">
