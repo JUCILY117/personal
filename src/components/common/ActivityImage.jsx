@@ -4,7 +4,7 @@ export default function ActivityImage({
   src, 
   alt, 
   className = "",
-  fallbackSrc = "/default-album.png" // Add a default image to your public folder
+  fallbackSrc = "/default-album.png"
 }) {
   const [imageError, setImageError] = useState(false);
   const [imageLoading, setImageLoading] = useState(true);

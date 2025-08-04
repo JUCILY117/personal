@@ -8,7 +8,7 @@ export default function Hero() {
         <div className="space-y-5 max-w-md lg:max-w-lg mx-auto lg:mx-0 text-center lg:text-left">
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight">
             <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-              Your Name
+              Aayu
             </span>
           </h1>
           <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-teal-400">
@@ -17,7 +17,7 @@ export default function Hero() {
           <p className="text-base sm:text-lg lg:text-xl text-gray-300 leading-relaxed">
             Building high-performance applications with React, APIs, and real-time integrations.
           </p>
-          <button className="mt-3 px-6 sm:px-8 py-2 sm:py-3 bg-teal-500 hover:bg-teal-400 text-black font-semibold rounded-lg transition-transform transform hover:scale-105">
+          <button className="mt-3 px-6 sm:px-8 py-2 sm:py-3 bg-teal-400 hover:bg-teal-300 text-gray-800 font-extrabold text-black rounded-lg transition-transform transform hover:scale-105">
             <Link to="/projects" smooth={true} duration={500}>
             View My Work
             </Link>

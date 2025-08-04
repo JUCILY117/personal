@@ -3,6 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import Hero from './components/Hero';
 import Contact from './components/Contact';
 import Navbar from './components/Navbar';
+import Projects from './components/Projects';
+import NotFound from './components/common/NotFound';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
@@ -24,6 +26,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Hero />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/projects" element={<Projects/>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
 
       {/* Toast notifications container */}

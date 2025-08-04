@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 export default function NoActivity() {
   return (
     <div className="relative flex flex-col items-center justify-center py-20 bg-gradient-to-br from-purple-900/60 via-transparent to-gray-900/60 backdrop-blur-lg rounded-xl shadow-xl overflow-hidden max-w-xl mx-auto">
@@ -45,12 +46,12 @@ export default function NoActivity() {
             </h2>
             <p className="text-indigo-300 max-w-md mx-auto text-lg leading-relaxed">
               I’m currently offline or in stealth mode, but meanwhile you can&nbsp;
-              <a
-                href="#projects"
+              <Link
+                to="projects"
                 className="text-emerald-400 hover:underline font-semibold"
               >
                 check out my projects
-              </a>
+              </Link>
               ,&nbsp;
               <a
                 href="https://github.com/JUCILY117"
@@ -61,12 +62,11 @@ export default function NoActivity() {
                 visit my GitHub
               </a>
               , or&nbsp;
-              <a
-                href="#contact"
+              <Link to="/contact"
                 className="text-yellow-400 hover:underline font-semibold"
               >
                 drop me a message
-              </a>
+              </Link>
               .
             </p>
           </div>
