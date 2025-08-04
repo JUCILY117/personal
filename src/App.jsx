@@ -30,7 +30,6 @@ function App() {
         <Route path="*" element={<NotFound />} />
       </Routes>
 
-      {/* Toast notifications container */}
       <ToastContainer
         position="top-right"
         autoClose={5000}
