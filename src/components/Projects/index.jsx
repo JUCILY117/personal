@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { fetchProjects } from "../../../utils/projectUtils";
 import ProjectCard from "./ProjectCard";
 import { FaArrowCircleLeft, FaArrowCircleRight } from "react-icons/fa";

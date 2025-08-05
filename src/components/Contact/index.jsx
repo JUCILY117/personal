@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useLanyard } from "../../../hooks/useLanyard";
 import ProfilePicture from "../common/ProfilePicture";
 import { toast } from 'react-toastify';
-import { s } from "framer-motion/client";
 
 export default function Contact() {
   const [form, setForm] = useState({ email: "", message: "" });

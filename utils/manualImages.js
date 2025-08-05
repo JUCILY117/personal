@@ -11,8 +11,6 @@ export async function fetchManualImages() {
     if (!res.ok) throw new Error('Failed to fetch manual images');
     const data = await res.json();
 
-    console.log('API response data:', data);
-
     const imagesArray = Array.isArray(data)
       ? data
       : data.game_images;
