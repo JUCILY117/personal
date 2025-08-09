@@ -5,22 +5,30 @@ import StatusDisplay from "./StatusDisplay";
 export default function SpotifyCard({ spotify, currentTime, status, user }) {
   if (!spotify) return null;
 
-  const progressMs = Math.max(0, Math.min(
-    currentTime - spotify.timestamps.start, 
-    spotify.timestamps.end - spotify.timestamps.start
-  ));
+  const progressMs = Math.max(
+    0,
+    Math.min(
+      currentTime - spotify.timestamps.start,
+      spotify.timestamps.end - spotify.timestamps.start
+    )
+  );
   const totalMs = spotify.timestamps.end - spotify.timestamps.start;
   const progressPercent = (progressMs / totalMs) * 100;
+
   const formatArtists = (artistString) => {
-    if (!artistString) return '';
-    const artists = artistString.split(';').map(artist => artist.trim());
+    if (!artistString) return "";
+    const artists = artistString.split(";").map((artist) => artist.trim());
     return artists.map((artist, index) => (
       <span key={index}>
         {artist}
         {index < artists.length - 1 && (
           <span className="mx-2 text-gray-500">
-            <svg className="w-1 h-1 inline-block" fill="currentColor" viewBox="0 0 8 8">
-              <circle cx="4" cy="4" r="3"/>
+            <svg
+              className="w-1 h-1 inline-block"
+              fill="currentColor"
+              viewBox="0 0 8 8"
+            >
+              <circle cx="4" cy="4" r="3" />
             </svg>
           </span>
         )}
@@ -29,11 +37,11 @@ export default function SpotifyCard({ spotify, currentTime, status, user }) {
   };
 
   return (
-    <div className="w-full max-w-xl ml-8">
-      <div className="relative bg-gradient-to-r from-gray-900/60 to-gray-800/40 rounded-3xl p-6 backdrop-blur-sm border border-gray-700/30">
+    <div className="w-full max-w-xl ml-8 max-sm:ml-0 max-sm:px-4 max-sm:flex max-sm:justify-center">
+      <div className="relative bg-gradient-to-r from-gray-900/60 to-gray-800/40 rounded-3xl p-6 backdrop-blur-sm border border-gray-700/30 max-sm:w-full max-sm:max-w-sm">
         <StatusDisplay status={status} user={user} position="top-right" />
         <div className="absolute inset-0 bg-gradient-to-br from-green-500/5 to-transparent rounded-3xl"></div>
-        
+
         <div className="relative">
           <div className="mb-4">
             <p className="text-sm text-gray-400 text-left">
@@ -48,7 +56,8 @@ export default function SpotifyCard({ spotify, currentTime, status, user }) {
               </a>
             </p>
           </div>
-          <div className="flex items-center gap-6">
+
+          <div className="flex items-center gap-6 max-sm:flex-col max-sm:items-center max-sm:text-center">
             <div className="flex-shrink-0">
               <div className="relative group">
                 <a
@@ -67,17 +76,25 @@ export default function SpotifyCard({ spotify, currentTime, status, user }) {
                 </div>
               </div>
             </div>
-
-            <div className="flex-1 min-w-0">
-              <h3 className="text-2xl font-bold text-white mb-1 truncate" title={spotify.song}>
+            <div className="flex-1 min-w-0 max-sm:w-full">
+              <h3
+                className="text-2xl font-bold text-white mb-1 truncate"
+                title={spotify.song}
+              >
                 {spotify.song}
               </h3>
-              
+
               <div className="space-y-1 mb-4">
-                <div className="text-sm text-green-400 font-medium truncate" title={spotify.artist}>
+                <div
+                  className="text-sm text-green-400 font-medium truncate"
+                  title={spotify.artist}
+                >
                   {formatArtists(spotify.artist)}
                 </div>
-                <p className="text-sm text-gray-400 truncate" title={spotify.album}>
+                <p
+                  className="text-sm text-gray-400 truncate"
+                  title={spotify.album}
+                >
                   {spotify.album}
                 </p>
               </div>
@@ -95,7 +112,6 @@ export default function SpotifyCard({ spotify, currentTime, status, user }) {
                     style={{ left: `calc(${progressPercent}% - 8px)` }}
                   />
                 </div>
-                
                 <div className="flex justify-between text-xs text-gray-400 font-mono">
                   <span>{formatTime(progressMs)}</span>
                   <span>{formatTime(totalMs)}</span>

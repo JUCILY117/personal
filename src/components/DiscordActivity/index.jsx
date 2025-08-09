@@ -20,8 +20,8 @@ export default function DiscordActivity() {
 
   if (loading) {
     return (
-      <div className="w-full max-w-2xl">
-        <div className="animate-pulse space-y-6">
+      <div className="w-full max-w-2xl mx-auto px-0 max-sm:px-4 max-sm:flex max-sm:justify-center">
+        <div className="animate-pulse space-y-6 max-sm:w-full max-sm:max-w-sm">
           <div className="h-8 bg-gray-800/50 rounded w-3/4 mx-auto"></div>
           <div className="h-80 bg-gray-800/50 rounded-2xl"></div>
           <div className="h-6 bg-gray-800/50 rounded w-1/2 mx-auto"></div>
@@ -32,26 +32,28 @@ export default function DiscordActivity() {
 
   if (error) {
     return (
-      <div className="w-full max-w-2xl text-center">
-        <div className="relative anime-card rounded-3xl p-8">
+      <div className="w-full max-w-2xl mx-auto px-0 max-sm:px-4 max-sm:flex max-sm:justify-center">
+        <div className="relative anime-card rounded-3xl p-8 max-sm:w-full max-sm:max-w-sm text-center">
           <StatusDisplay status="offline" user={{ username: "User" }} position="top-right" />
           <div className="text-red-400">
             <p className="text-xl">Failed to load Discord activity</p>
-            <p className="text-sm text-gray-500 mt-2">{error}</p>
+            <p className="text-sm text-gray-500 mt-2 break-words">{error}</p>
           </div>
         </div>
       </div>
     );
   }
 
-  if (!data) return (
-    <div className="w-full max-w-2xl text-center">
-      <div className="relative anime-card rounded-3xl p-8">
-        <StatusDisplay status="offline" user={{ username: "User" }} position="top-right" />
-        <p className="text-xl text-gray-500">No Discord data available</p>
+  if (!data) {
+    return (
+      <div className="w-full max-w-2xl mx-auto px-0 max-sm:px-4 max-sm:flex max-sm:justify-center">
+        <div className="relative anime-card rounded-3xl p-8 max-sm:w-full max-sm:max-w-sm text-center">
+          <StatusDisplay status="offline" user={{ username: "User" }} position="top-right" />
+          <p className="text-xl text-gray-500">No Discord data available</p>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 
   const status = data.discord_status || "offline";
   const mainActivity = getMainActivity(data.activities);
@@ -63,46 +65,42 @@ export default function DiscordActivity() {
   const showCrunchyroll = !showSpotify && !showMainActivity && crunchyroll;
 
   return (
-    <div className="w-full max-w-2xl space-y-8">
+    <div className="w-full max-w-2xl mx-auto px-0 max-sm:px-4 space-y-8 max-sm:flex max-sm:flex-col max-sm:items-center">
       {showSpotify && (
-        <SpotifyCard 
-          spotify={spotify} 
-          currentTime={now} 
-          status={status} 
-          user={data.discord_user} 
-        />
-      )}
-      
-      {showMainActivity && (
-        <ActivityCard 
-          activity={mainActivity} 
-          currentTime={now} 
-          status={status} 
-          user={data.discord_user} 
-        />
-      )}
-      
-      {showCrunchyroll && (
-        <CrunchyrollCard 
-          activity={crunchyroll} 
-          currentTime={now} 
-          status={status} 
-          user={data.discord_user} 
+        <SpotifyCard
+          spotify={spotify}
+          currentTime={now}
+          status={status}
+          user={data.discord_user}
         />
       )}
 
+      {showMainActivity && (
+        <ActivityCard
+          activity={mainActivity}
+          currentTime={now}
+          status={status}
+          user={data.discord_user}
+        />
+      )}
+
+      {showCrunchyroll && (
+        <CrunchyrollCard
+          activity={crunchyroll}
+          currentTime={now}
+          status={status}
+          user={data.discord_user}
+        />
+      )}
+
+      {!showSpotify && !showMainActivity && !showCrunchyroll && (<NoActivity />)}
+
       <style jsx>{`
         @keyframes float {
-          0%, 100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-20px);
-          }
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-20px); }
         }
       `}</style>
-      
-      {!showSpotify && !showMainActivity && !showCrunchyroll && (<NoActivity/>)}
     </div>
   );
 }

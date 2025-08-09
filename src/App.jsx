@@ -24,40 +24,40 @@ function App() {
     };
   }, []);
 
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 1024);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  // useEffect(() => {
+  //   const checkMobile = () => {
+  //     setIsMobile(window.innerWidth <= 1024);
+  //   };
+  //   checkMobile();
+  //   window.addEventListener('resize', checkMobile);
+  //   return () => window.removeEventListener('resize', checkMobile);
+  // }, []);
 
-  useEffect(() => {
-    if (isMobile && location.pathname !== '/') {
-      window.history.replaceState(null, '', '/');
-    }
-  }, [isMobile, location]);
+  // useEffect(() => {
+  //   if (isMobile && location.pathname !== '/') {
+  //     window.history.replaceState(null, '', '/');
+  //   }
+  // }, [isMobile, location]);
 
-  if (isMobile) {
-    return (
-      <div className="min-h-screen bg-gray-950 text-white relative">
-        <MobileWarning />
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="colored"
-        />
-      </div>
-    );
-  }
+  // if (isMobile) {
+  //   return (
+  //     <div className="min-h-screen bg-gray-950 text-white relative">
+  //       <MobileWarning />
+  //       <ToastContainer
+  //         position="top-right"
+  //         autoClose={5000}
+  //         hideProgressBar={false}
+  //         newestOnTop={false}
+  //         closeOnClick
+  //         rtl={false}
+  //         pauseOnFocusLoss
+  //         draggable
+  //         pauseOnHover
+  //         theme="colored"
+  //       />
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="min-h-screen bg-gray-950 text-white">

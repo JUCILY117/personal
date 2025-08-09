@@ -63,14 +63,29 @@ export default function ActivityCard({ activity, currentTime }) {
   const startedAt = timestamps?.start ? getElapsedTime(timestamps.start, currentTime) : null;
 
   return (
-    <div className="max-w-xl ml-8 relative bg-gradient-to-r from-gray-900/60 to-gray-800/40 rounded-3xl p-6 backdrop-blur-sm border border-gray-700/50 shadow-lg overflow-hidden text-white font-sans flex gap-8 items-center">
+     <div className="
+      max-w-xl ml-8 relative bg-gradient-to-r from-gray-900/60 to-gray-800/40 rounded-3xl p-6 backdrop-blur-sm border border-gray-700/50 shadow-lg overflow-hidden text-white font-sans flex gap-8 items-center
+      max-sm:max-w-sm
+      max-sm:mx-0
+      max-sm:flex-col
+      max-sm:items-center
+      max-sm:text-center
+      max-sm:px-4
+      max-sm:gap-4
+    ">
       <Tooltip text={assets?.large_text || 'No extra info'}>
-        <img
-          src={imgSrc}
-          alt={name}
-          className="w-40 h-40 rounded-2xl object-cover transition-transform duration-300 hover:scale-105 cursor-pointer"
-          draggable={false}
-        />
+        <div className="relative w-40 h-40 rounded-2xl overflow-hidden flex items-center justify-center bg-gray-800/70">
+          {loading ? (
+            <div className="w-full h-full animate-pulse bg-gray-700 rounded-2xl" />
+          ) : (
+            <img
+              src={imgSrc}
+              alt={name}
+              className="w-full h-full object-cover border border-neutral-800 rounded-2xl transition-transform duration-300 hover:scale-105 cursor-pointer"
+              draggable={false}
+            />
+          )}
+        </div>
       </Tooltip>
 
       <div className="flex flex-col flex-1 min-w-0">
@@ -80,7 +95,10 @@ export default function ActivityCard({ activity, currentTime }) {
           </span>
         </div>
 
-        <h2 className="text-4xl font-black leading-tight truncate mb-1" title={name}>
+        <h2
+          className="text-4xl font-black leading-tight truncate mb-1"
+          title={name}
+        >
           {name}
         </h2>
 
@@ -97,7 +115,7 @@ export default function ActivityCard({ activity, currentTime }) {
         )}
 
         {startedAt && (
-          <div className="flex items-center gap-2 text-green-400 font-mono text-base select-none">
+          <div className="flex items-center gap-2 text-green-400 font-mono text-base select-none justify-start max-sm:justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"

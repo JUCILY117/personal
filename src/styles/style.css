@@ -27,6 +27,7 @@
 body {
   background: var(--bg-primary);
   color: var(--text-primary);
+  font-family: 'Poppins', sans-serif;
 }
 
 .theme-card {
