@@ -17,7 +17,7 @@ export default function Hero() {
           <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed px-2 sm:px-0">
             Building high-performance applications with React, APIs, and real-time integrations.
           </p>
-            <Link to="/projects" smooth={true} duration={500}>
+            <Link to="/projects">
           <button 
             className="mt-3 px-5 sm:px-6 md:px-8 py-2 sm:py-2.5 md:py-3 bg-teal-400 hover:bg-teal-300 text-gray-800 font-extrabold rounded-lg transition-transform transform hover:scale-105 w-full sm:w-auto cursor-pointer shadow-lg max-sm:w-1/2"
           >

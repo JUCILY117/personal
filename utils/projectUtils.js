@@ -11,11 +11,7 @@ export async function fetchProjects() {
     if (!res.ok) throw new Error('Failed to fetch projects');
 
     const data = await res.json();
-
-    console.log('API raw data:', data);
     const projectsArray = Array.isArray(data.Project) ? data.Project : [];
-
-    console.log('Extracted projects:', projectsArray);
 
     return projectsArray;
   } catch (err) {
