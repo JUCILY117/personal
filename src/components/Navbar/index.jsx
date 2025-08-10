@@ -1,17 +1,56 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useRef } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
 import ProfilePicture from '../common/ProfilePicture';
 import MobileSidebarMenu from './MobileSidebarMenu';
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const holdTimerRef = useRef(null);
+  const holdTriggeredRef = useRef(false);
+
+  function handleProfilePictureMouseDown(e) {
+    holdTriggeredRef.current = false;
+    holdTimerRef.current = setTimeout(() => {
+      holdTriggeredRef.current = true;
+      navigate('/form');
+    }, 1200);
+  }
+
+  function handleProfilePictureMouseUp(e) {
+    clearTimeout(holdTimerRef.current);
+  }
+
+  function handleProfilePictureMouseLeave(e) {
+    clearTimeout(holdTimerRef.current);
+  }
+
+  function handleProfilePictureClick(e) {
+    setMenuOpen(false);
+    if (holdTriggeredRef.current) {
+      holdTriggeredRef.current = false;
+      return;
+    }
+    navigate('/');
+  }
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-transparent">
       <div className="max-w-7xl mx-auto px-6 py-6 flex items-center justify-between">
-        <Link to="/" onClick={() => setMenuOpen(false)}>
+        <button
+          className="focus:outline-none cursor-pointer"
+          title="Home"
+          style={{ background: 'transparent', padding: 0, border: 'none' }}
+          onClick={handleProfilePictureClick}
+          onMouseDown={handleProfilePictureMouseDown}
+          onMouseUp={handleProfilePictureMouseUp}
+          onMouseLeave={handleProfilePictureMouseLeave}
+          onTouchStart={handleProfilePictureMouseDown}
+          onTouchEnd={handleProfilePictureMouseUp}
+        >
           <ProfilePicture size={64} />
-        </Link>
+        </button>
+
         <div className="hidden text-xl md:flex space-x-8 text-teal-400 font-semibold">
           <Link to="about" className="hover:underline">About</Link>
           <Link to="projects" className="hover:underline">Projects</Link>
