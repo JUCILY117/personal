@@ -103,3 +103,24 @@ body {
 .Toastify__progress-bar--success {
   background: linear-gradient(to right, #2dd4bf, #14b8a6) !important;
 }
+
+/* scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 9999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #2dd4bf;
+  border-radius: 9999px;
+  border: none;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #2dd4bf transparent;
+}

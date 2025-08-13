@@ -65,7 +65,7 @@ export default function ContactRight({
             required
             rows={2}
             placeholder="Write your message here…"
-            className="rounded-xl px-5 py-4 text-md text-white bg-transparent border border-teal-400/40 resize-y focus:ring-2 focus:ring-teal-400 focus:outline-none transition"
+            className="rounded-xl px-5 py-4 text-md text-white max-h-17 bg-transparent border border-teal-400/40 resize-y focus:ring-2 focus:ring-teal-400 focus:outline-none transition custom-scrollbar"
             minLength={3}
           />
         )}
