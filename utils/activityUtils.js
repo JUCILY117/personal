@@ -14,20 +14,6 @@ let manualImagesCache = null;
 export async function getActivityImage(activity) {
   if (!activity) return '';
 
-  if (!manualImagesCache) {
-    manualImagesCache = await fetchManualImages();
-  }
-
-  if (manualImagesCache[activity.name]) {
-    return manualImagesCache[activity.name];
-  }
-  
-  const lowerName = activity.name.toLowerCase();
-  const foundKey = Object.keys(manualImagesCache).find(k => k.toLowerCase() === lowerName);
-  if (foundKey) {
-    return manualImagesCache[foundKey];
-  }
-
   if (activity.assets?.large_image) {
     if (activity.assets.large_image.startsWith('mp:')) {
       return `https://media.discordapp.net/${activity.assets.large_image.replace('mp:', '')}`;
@@ -35,5 +21,20 @@ export async function getActivityImage(activity) {
     return `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
   }
 
+  if (!manualImagesCache) {
+    manualImagesCache = await fetchManualImages();
+  }
+
+  if (manualImagesCache[activity.name]) {
+    return manualImagesCache[activity.name];
+  }
+
+  const lowerName = activity.name.toLowerCase();
+  const foundKey = Object.keys(manualImagesCache).find(k => k.toLowerCase() === lowerName);
+  if (foundKey) {
+    return manualImagesCache[foundKey];
+  }
+
   return '/images/controller-placeholder.png';
 }
+
