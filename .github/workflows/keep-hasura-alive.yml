@@ -1,0 +1,21 @@
+name: Keep Hasura Alive
+
+on:
+  schedule:
+    - cron: '30 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  ping-hasura:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Hasura GraphQL API
+        run: |
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -H "x-hasura-admin-secret: ${{ secrets.HASURA_ADMIN_SECRET }}" \
+            -d '{"query": "{ __typename }"}' \
+            ${{ secrets.HASURA_ENDPOINT }}
+        env:
+          HASURA_ENDPOINT: ${{ secrets.HASURA_ENDPOINT }}
+          HASURA_ADMIN_SECRET: ${{ secrets.HASURA_ADMIN_SECRET }}
