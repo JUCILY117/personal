@@ -15,9 +15,15 @@ export default function GameForm() {
     setStatus('Uploading…');
     const query = `
       mutation InsertGameImage($game_name: String!, $image_url: String) {
-        insert_game_images_one(object: {
-          game_name: $game_name, image_url: $image_url
-        }) { id }
+        insert_game_images_one(
+          object: { game_name: $game_name, image_url: $image_url },
+          on_conflict: {
+            constraint: game_images_game_name_key,
+            update_columns: image_url
+          }
+        ) {
+          id
+        }
       }
     `;
     const variables = { game_name: gameName, image_url: imageUrl };
