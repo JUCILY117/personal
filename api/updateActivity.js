@@ -3,7 +3,9 @@ import fetch from 'node-fetch';
 import dotenv from 'dotenv';
 import path from 'path';
 
-dotenv.config({ path: path.resolve(process.cwd(), '../.env') });
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config({ path: path.resolve(process.cwd(), '../.env') });
+}
 
 const MONGO_URI = process.env.MONGO_URI;
 const DISCORD_ID = process.env.VITE_DISCORD_ID;
@@ -18,7 +20,7 @@ async function connectToDatabase() {
     return { client: cachedClient, db: cachedDb };
   }
   console.log('Connecting to MongoDB...');
-  const client = new MongoClient(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+  const client = new MongoClient(MONGO_URI);
   await client.connect();
   const db = client.db();
   cachedClient = client;
@@ -49,12 +51,12 @@ async function upsertActivity(db, data) {
       $set: {
         activity_type: 'discord_presence',
         activity_data: data,
-        last_seen_at: new Date()
-      }
+        last_seen_at: new Date(),
+      },
     },
     { upsert: true }
   );
-  console.log('MongoDB upsert completed:', result.result);
+  console.log('MongoDB upsert completed:', result);
   return result;
 }
 
