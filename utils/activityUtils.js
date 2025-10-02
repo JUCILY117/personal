@@ -38,3 +38,46 @@ export async function getActivityImage(activity) {
   return '/images/controller-placeholder.png';
 }
 
+export async function getUnifiedActivityImage(activityData) {
+  if (!activityData) return '';
+
+  if (activityData.spotify?.album_art_url) {
+    return activityData.spotify.album_art_url;
+  }
+
+  if (Array.isArray(activityData.activities)) {
+    const mainAct = activityData.activities[0];
+    if (mainAct && (mainAct.type === 0 || mainAct.type === 1)) {
+      if (!manualImagesCache) {
+        manualImagesCache = await fetchManualImages();
+      }
+
+      const gameName = mainAct.name?.toLowerCase();
+
+      const foundKey = Object.keys(manualImagesCache).find(
+        (key) => key.toLowerCase() === gameName
+      );
+
+      if (foundKey) {
+        return manualImagesCache[foundKey];
+      }
+    }
+
+    for (const act of activityData.activities) {
+      if (act.assets?.large_image) {
+        if (act.assets.large_image.startsWith('mp:')) {
+          return `https://media.discordapp.net/${act.assets.large_image.replace(
+            'mp:',
+            ''
+          )}`;
+        }
+        if (act.application_id && act.assets.large_image) {
+          return `https://cdn.discordapp.com/app-assets/${act.application_id}/${act.assets.large_image}.png`;
+        }
+        return act.assets.large_image;
+      }
+    }
+  }
+
+  return originalGetActivityImage(activityData);
+}
