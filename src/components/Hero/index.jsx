@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { FaSquareGithub } from "react-icons/fa6";
 import DiscordActivity from '../DiscordActivity';
 
 export default function Hero() {
@@ -14,20 +15,37 @@ export default function Hero() {
           <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold text-teal-400">
             Full Stack Developer
           </h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed px-2 sm:px-0">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-300 leading-relaxed px-0">
             Building high-performance applications with React, APIs, and real-time integrations.
           </p>
+
+          <div className="flex flex-row gap-3 items-center justify-center lg:justify-start mt-3 px-0">
             <Link to="/projects">
-          <button 
-            className="mt-3 px-5 sm:px-6 md:px-8 py-2 sm:py-2.5 md:py-3 bg-teal-400 hover:bg-teal-300 text-gray-800 font-extrabold rounded-lg transition-transform transform hover:scale-105 w-full sm:w-auto cursor-pointer shadow-lg max-sm:w-1/2"
-          >
-              View My Work
-          </button>
+              <button className="px-5 py-2 bg-teal-400 hover:bg-white text-gray-900 font-extrabold rounded-md transition-transform text-center cursor-pointer">
+                My Work
+              </button>
             </Link>
+            <Link to="/contact">
+              <button className="px-5 py-2 bg-none hover:bg-teal-400 text-teal-400 hover:text-gray-900 font-extrabold rounded-md transition-transform  text-center cursor-pointer">
+                Contact Me
+              </button>
+            </Link>
+
+            <a
+              href="https://github.com/JUCILY117"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-transform"
+              aria-label="GitHub"
+            >
+              <FaSquareGithub size={42} className="text-teal-400 hover:text-white" />
+            </a>
+          </div>
         </div>
       </div>
+
       <div className="w-full lg:w-1/2 flex items-center justify-center pl-0 lg:pl-4 mt-8 lg:mt-0">
-        <div className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl px-2 sm:px-0">
+        <div className="w-full max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl px-0">
           <DiscordActivity />
         </div>
       </div>
