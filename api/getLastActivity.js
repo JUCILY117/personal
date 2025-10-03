@@ -1,4 +1,10 @@
 import { MongoClient } from 'mongodb';
+import dotenv from 'dotenv';
+import path from 'path';
+
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config({ path: path.resolve(process.cwd(), '../.env') });
+}
 
 const MONGO_URI = process.env.MONGO_URI;
 const DISCORD_ID = process.env.VITE_DISCORD_ID;

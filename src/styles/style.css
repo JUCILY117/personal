@@ -124,3 +124,8 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #2dd4bf transparent;
 }
+
+.motion-glow {
+  border-radius: 12px;
+  pointer-events: none;
+}
