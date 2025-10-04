@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getElapsedTime } from "../../../utils/timeFormat";
 import { getActivityImage } from "../../../utils/activityUtils";
+import { SiCrunchyroll } from 'react-icons/si';
 
 export default function CrunchyrollCard({ activity, currentTime }) {
   if (!activity) return null;
@@ -98,6 +99,7 @@ export default function CrunchyrollCard({ activity, currentTime }) {
           </div>
           <div className="flex-1 space-y-4 min-w-0 max-sm:w-full">
             <div className="flex items-center gap-2 text-xs justify-start max-sm:justify-center">
+              <SiCrunchyroll className="text-orange-400 text-base" />
               <span className="text-orange-400 font-bold uppercase tracking-wider">
                 Watching Crunchyroll
               </span>

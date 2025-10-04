@@ -1,6 +1,8 @@
 import { formatTime } from "../../../utils/timeFormat";
 import ActivityImage from "../common/ActivityImage";
 import StatusDisplay from "./StatusDisplay";
+import { FaSpotify } from 'react-icons/fa';
+import { FiExternalLink } from 'react-icons/fi';
 
 export default function SpotifyCard({ spotify, currentTime, status, user }) {
   if (!spotify) return null;
@@ -44,8 +46,9 @@ export default function SpotifyCard({ spotify, currentTime, status, user }) {
 
         <div className="relative">
           <div className="mb-4">
-            <p className="text-sm text-gray-400 text-left">
-              Currently listening to{" "}
+            <p className="text-sm text-gray-400 text-left flex items-center gap-1">
+              <span>Currently listening to </span>
+              <FaSpotify className="text-green-400" />
               <a
                 href={`https://open.spotify.com/track/${spotify.track_id}`}
                 target="_blank"
@@ -64,12 +67,16 @@ export default function SpotifyCard({ spotify, currentTime, status, user }) {
                   href={`https://open.spotify.com/track/${spotify.track_id}`}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="block relative"
                 >
                   <ActivityImage
                     src={spotify.album_art_url}
                     alt={`${spotify.album} by ${spotify.artist}`}
                     className="w-32 h-32 rounded-2xl shadow-xl transition-all duration-300 group-hover:scale-105 group-hover:cursor-pointer"
                   />
+                  <div className="absolute bottom-2 left-2 text-green-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <FiExternalLink size={18} />
+                  </div>
                 </a>
                 <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
                   <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
