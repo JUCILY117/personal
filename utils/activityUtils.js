@@ -75,6 +75,11 @@ export async function getUnifiedActivityImage(activityData) {
             ''
           )}`;
         }
+
+        if (act.application_id) {
+          return `https://dcdn.dstn.to/app-icons/${act.application_id}.png?size=1024`;
+        }
+
         if (act.application_id && act.assets.large_image) {
           return `https://cdn.discordapp.com/app-assets/${act.application_id}/${act.assets.large_image}.png`;
         }
@@ -86,5 +91,5 @@ export async function getUnifiedActivityImage(activityData) {
     }
   }
 
-  return originalGetActivityImage(activityData);
+  return getActivityImage(activityData);
 }
