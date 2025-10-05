@@ -21,6 +21,10 @@ export async function getActivityImage(activity) {
     return `https://cdn.discordapp.com/app-assets/${activity.application_id}/${activity.assets.large_image}.png`;
   }
 
+  if (activity.application_id) {
+    return `https://dcdn.dstn.to/app-icons/${activity.application_id}.png?size=1024`;
+  }
+
   if (!manualImagesCache) {
     manualImagesCache = await fetchManualImages();
   }
@@ -75,6 +79,9 @@ export async function getUnifiedActivityImage(activityData) {
           return `https://cdn.discordapp.com/app-assets/${act.application_id}/${act.assets.large_image}.png`;
         }
         return act.assets.large_image;
+      }
+      if (act.application_id) {
+        return `https://dcdn.dstn.to/app-icons/${act.application_id}.png?size=1024`;
       }
     }
   }
