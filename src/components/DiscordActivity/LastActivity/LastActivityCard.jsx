@@ -4,6 +4,7 @@ import { FaSpotify } from 'react-icons/fa';
 import { FiExternalLink } from 'react-icons/fi';
 import { SiCrunchyroll } from 'react-icons/si';
 import { IoGameController } from 'react-icons/io5';
+import { FaHistory } from "react-icons/fa";
 import { getUnifiedActivityImage } from '../../../../utils/activityUtils';
 import { formatTimeAgo } from '../../../../utils/timeFormat';
 
@@ -85,7 +86,7 @@ export default function LastActivityCard({ activity }) {
   const coverClass = isCrunchyroll
     ? 'relative w-auto h-auto max-w-[200px] max-h-[280px] sm:max-w-[220px] sm:max-h-[300px] rounded-2xl overflow-hidden flex-shrink-0'
     : isGame
-    ? 'w-32 h-32 rounded-2xl overflow-hidden border border-gray-600/50 flex-shrink-0 bg-gray-800'
+    ? 'w-32 h-32 rounded-2xl overflow-hidden flex-shrink-0'
     : 'w-40 h-40 rounded-2xl overflow-hidden flex-shrink-0';
 
   return (
@@ -202,7 +203,8 @@ export default function LastActivityCard({ activity }) {
                 {album}
               </p>
             )}
-            <p className="text-orange-300 font-mono text-base select-none">
+            <p className="text-orange-300 font-mono text-base select-none inline-flex items-center gap-2">
+              <FaHistory className="text-orange-300" />
               {timeAgo}
             </p>
           </>
@@ -222,7 +224,8 @@ export default function LastActivityCard({ activity }) {
                 {album}
               </p>
             )}
-            <p className="text-green-400 font-mono text-base select-none">
+            <p className="text-green-400 font-mono text-base select-none inline-flex items-center gap-2">
+              <FaHistory className="text-green-400" />
               {timeAgo}
             </p>
           </>
@@ -236,7 +239,8 @@ export default function LastActivityCard({ activity }) {
                 {artist}
               </p>
             )}
-            <p className="text-green-400 font-mono text-base select-none">
+            <p className="text-green-400 font-mono text-base select-none inline-flex items-center gap-2">
+              <FaHistory className="text-green-400" />
               {timeAgo}
             </p>
           </>

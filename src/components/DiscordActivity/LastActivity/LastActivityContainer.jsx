@@ -7,7 +7,7 @@ export default function LastActivityContainer() {
   useEffect(() => {
     async function fetchLastActivity() {
       try {
-        const response = await fetch('/api/getLastActivity');
+        const response = await fetch('http://localhost:3001/api/getLastActivity');
         if (response.ok) {
           const data = await response.json();
           setActivity(data);

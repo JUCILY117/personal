@@ -74,14 +74,14 @@ export default function ActivityCard({ activity, currentTime }) {
       max-sm:gap-4
     ">
       <Tooltip text={assets?.large_text || 'No extra info'}>
-        <div className="relative w-40 h-40 rounded-2xl overflow-hidden flex items-center justify-center bg-gray-800/70">
+        <div className="relative w-32 h-32 rounded-2xl overflow-hidden flex items-center justify-center">
           {loading ? (
             <div className="w-full h-full animate-pulse bg-gray-700 rounded-2xl" />
           ) : (
             <img
               src={imgSrc}
               alt={name}
-              className="w-full h-full object-cover border border-neutral-800 rounded-2xl transition-transform duration-300 hover:scale-105 cursor-pointer"
+              className="w-full h-full object-cover rounded-2xl transition-transform duration-300"
               draggable={false}
             />
           )}
