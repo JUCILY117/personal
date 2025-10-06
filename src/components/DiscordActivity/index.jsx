@@ -5,7 +5,7 @@ import ActivityCard from "./ActivityCard";
 import SpotifyCard from "./SpotifyCard";
 import CrunchyrollCard from "./CrunchyrollCard";
 import { getMainActivity } from "../../../utils/activityUtils";
-import NoActivity from './LastActivity/LastActivityContainer';
+import NoActivity from './LastActivity';
 
 const DISCORD_ID = import.meta.env.VITE_DISCORD_ID;
 

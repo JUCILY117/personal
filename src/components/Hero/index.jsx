@@ -1,8 +1,32 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaSquareGithub } from "react-icons/fa6";
 import DiscordActivity from '../DiscordActivity';
 
 export default function Hero() {
+  const [githubUrl, setGithubUrl] = useState(null);
+
+  useEffect(() => {
+    async function fetchDiscordProfile() {
+      try {
+        const response = await fetch(`https://dcdn.dstn.to/profile/${import.meta.env.VITE_DISCORD_ID}`);
+        const data = await response.json();
+
+        const githubAccount = data.connected_accounts.find(
+          (account) => account.type === 'github'
+        );
+
+        if (githubAccount && githubAccount.name) {
+          setGithubUrl(`https://github.com/${githubAccount.name}`);
+        }
+      } catch (error) {
+        console.error('Failed to fetch Discord profile:', error);
+      }
+    }
+
+    fetchDiscordProfile();
+  }, []);
+
   return (
     <section className="w-full min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black flex items-center">
       <div className="flex flex-col lg:flex-row items-center justify-between w-full max-w-7xl mx-auto px-6 py-12 gap-10 lg:gap-20">
@@ -33,15 +57,17 @@ export default function Hero() {
                 Contact Me
               </button>
             </Link>
-            <a
-              href="https://github.com/JUCILY117"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="GitHub"
-              className="text-teal-400 hover:text-white transition-all duration-200"
-            >
-              <FaSquareGithub size={42} />
-            </a>
+            {githubUrl && (
+              <a
+                href={githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="text-teal-400 hover:text-white transition-all duration-200"
+              >
+                <FaSquareGithub size={42} />
+              </a>
+            )}
           </div>
         </div>
 
