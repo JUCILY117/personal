@@ -24,6 +24,8 @@
   --gradient-bg: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, #111827 100%);
 }
 
+html { font-size: 16px; }  
+
 body {
   background: var(--bg-primary);
   color: var(--text-primary);

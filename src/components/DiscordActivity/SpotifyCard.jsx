@@ -1,5 +1,7 @@
+import { motion, AnimatePresence } from "framer-motion";
 import { formatTime } from "../../../utils/timeFormat";
 import ActivityImage from "../common/ActivityImage";
+import SmoothSpotifyImage from "./SpotifyArt";
 import StatusDisplay from "./StatusDisplay";
 import { FaSpotify } from 'react-icons/fa';
 import { FiExternalLink } from 'react-icons/fi';
@@ -69,10 +71,9 @@ export default function SpotifyCard({ spotify, currentTime, status, user }) {
                   rel="noopener noreferrer"
                   className="block relative"
                 >
-                  <ActivityImage
+                  <SmoothSpotifyImage
                     src={spotify.album_art_url}
                     alt={`${spotify.album} by ${spotify.artist}`}
-                    className="w-32 h-32 rounded-2xl shadow-xl transition-all duration-300 group-hover:scale-105 group-hover:cursor-pointer"
                   />
                   <div className="absolute bottom-2 left-2 text-green-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <FiExternalLink size={18} />
