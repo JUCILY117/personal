@@ -189,7 +189,7 @@ export default function LastActivityCard({ activity }) {
           <>
             {artist && (
               <p
-                className="text-orange-300 font-semibold text-lg truncate mb-1"
+                className="text-orange-300 font-semibold text-lg mb-1"
                 title={artist}
               >
                 {artist}
