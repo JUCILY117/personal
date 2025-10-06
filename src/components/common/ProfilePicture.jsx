@@ -49,12 +49,23 @@ export default function ProfilePicture({ size = 48 }) {
         style={{ userSelect: 'none' }}
       />
       {decorationSrc && (
-        <img
-          src={decorationSrc}
-          alt="Avatar Decoration"
-          className="absolute top-0 left-0 w-full h-full pointer-events-none"
-        />
-      )}
+    <img
+      src={decorationSrc}
+      alt="Avatar Decoration"
+      className="absolute pointer-events-none"
+      style={{
+  width: `${size * 1.35}px`,
+  height: `${size * 1.35}px`,
+  left: "50%",
+  top: "50%",
+  transform: "translate(-50%, -50%) scaleX(1.3)", // stretch width by scaleX
+  transformOrigin: "center",
+  zIndex: 10,
+  objectFit: "fill", // ensures image can stretch
+}}
+
+    />
+  )}
     </div>
   );
 }
