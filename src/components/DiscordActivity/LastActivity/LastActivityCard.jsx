@@ -178,6 +178,8 @@ export default function LastActivityCard({ activity }) {
           className={
             isCrunchyroll
               ? 'text-3xl font-bold mb-1 text-orange-100 break-words line-clamp-2'
+              : isGame
+              ? 'text-3xl font-bold mb-1 break-words'
               : 'text-3xl font-bold truncate mb-1'
           }
           title={name}
