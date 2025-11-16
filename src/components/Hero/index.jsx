@@ -53,7 +53,7 @@ export default function Hero() {
               </button>
             </Link>
             <Link to="/contact">
-              <button className="px-6 py-2 border border-teal-400 text-teal-400 hover:bg-teal-400 hover:text-gray-900 font-extrabold rounded-md transition-all duration-200 cursor-pointer">
+              <button className="px-6 py-2 text-teal-400 hover:bg-teal-400 hover:text-gray-900 font-extrabold rounded-md transition-all duration-200 cursor-pointer">
                 Contact Me
               </button>
             </Link>
