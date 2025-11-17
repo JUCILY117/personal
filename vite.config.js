@@ -14,8 +14,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png'],
       manifest: {
-        name: 'My Portfolio',
-        short_name: 'Portfolio',
+        name: 'Aayumats',
+        short_name: 'Aayumats',
         start_url: '/',
         display: 'standalone',
         background_color: '#ffffff',
